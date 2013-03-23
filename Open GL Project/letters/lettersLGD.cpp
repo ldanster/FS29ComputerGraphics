@@ -107,6 +107,74 @@ void drawL(){
 }
 
 void drawG(){
+	glPushMatrix();
+	glRotatef(45,0,0,1);
+	draw3Dcurve  (2,          //depth  
+		1,				//inner radius
+		1.5,			//outer radius
+		0,				//start angle
+		255,			//stop angle
+		1.0);			//anular increments
+	glPopMatrix();
+	
+	//Front Pieces
+	// Front Upper Piece
+	glBegin(GL_QUADS);
+        glColor3f(1, 0, 0);
+		glVertex3f(0.5,0,1);
+		glVertex3f(0.5,-1.5,1);
+		glVertex3f(1,-1.5,1);
+		glVertex3f(1,0,1);
+
+	glEnd();
+
+	glBegin(GL_QUADS);
+        glColor3f(1, 0, 0);
+		glVertex3f(0.5,0,-1);
+		glVertex3f(0.5,-1.5,-1);
+		glVertex3f(1,-1.5,-1);
+		glVertex3f(1,0,-1);
+
+	glEnd();
+
+	// Back Pieces
+	// Back of Upper Piece 
+	glBegin(GL_QUADS);
+		glColor3f(1,0,0);
+		glVertex3f(0.5,-1.5,-1);
+		glVertex3f(0.5,-1.5,1);
+		glVertex3f(0.5,0,1);
+		glVertex3f(0.5,0,-1);
+	glEnd();
+
+	// Front Back of Upper Piece
+	glBegin(GL_QUADS);
+		glColor3f(1,0,0);
+		glVertex3f(1,-1.5,1);
+		glVertex3f(1,-1.5,-1);
+		glVertex3f(1,0,-1);
+		glVertex3f(1,0,1);
+	glEnd();
+
+	// Top Pieces
+	// Top Of Upper Piece
+	glBegin(GL_QUADS);
+		glColor3f(1,0,0);
+		glVertex3f(1,0,1);
+		glVertex3f(1,0,-1);
+		glVertex3f(0.5,0,-1);
+		glVertex3f(0.5,0,1);
+	glEnd();
+
+	// Bottom of Upper Piece
+	glBegin(GL_QUADS);
+		glColor3f(1,-1.5,0);
+		glVertex3f(1,-1.5,1);
+		glVertex3f(1,-1.5,-1);
+		glVertex3f(0.5,-1.5,-1);
+		glVertex3f(0.5,-1.5,1);
+	glEnd();
+
 }
 
 void drawD(){

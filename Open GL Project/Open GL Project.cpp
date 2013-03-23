@@ -23,15 +23,10 @@ bool rotating=false;
 bool moving=false;
 
 void drawSomething(){
-	//draw3Dcurve  (1.0,          //depth  
-	//			1,				//inner radius
-	//			1.5,			//outer radius
-	//			45,				//start angle
-	//			320,			//stop angle
-	//			5.0);			//anular increments
-	//glScalef(2,2,0);
-	//glTranslatef(-1,-1,0);
-	drawL();
+	glScalef(2,2,1);
+
+	drawG();
+	//drawL();
 }
 
 void incrementYaw(){
