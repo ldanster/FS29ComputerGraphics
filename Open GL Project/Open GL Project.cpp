@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <GL/glut.h>
 #include "3DCurve.h"
+#include "lettersLGD.h"
 
 //======================================================
 // GLOBAL VARIABLES & FUNCTIONS
@@ -22,16 +23,67 @@ bool rotating=false;
 bool moving=false;
 
 void drawSomething(){
+	//draw3Dcurve  (1.0,          //depth  
+	//			1,				//inner radius
+	//			1.5,			//outer radius
+	//			45,				//start angle
+	//			320,			//stop angle
+	//			5.0);			//anular increments
+	//glScalef(2,2,0);
+	//glTranslatef(-1,-1,0);
+	drawL();
+}
 
-	//glTranslatef(1.5, 0.5, 0);
-	//glRotatef(180, 0, 0, 1);
-	draw3Dcurve  (1.0,          //depth  
-				1,          //inner radius
-				1.5,          //outer radius
-				0,          //start angle
-				180,  //stop angle
-				5.0);         //anular increments
+void incrementYaw(){
+	pitch=pitch+.25;
+	yaw=yaw+.25;
+}
 
+void idleCallBack (){
+	if(rotating) incrementYaw();
+	
+	if(moving) {
+		//moveHead();
+		//moveNeck();
+	}
+	
+    glutPostRedisplay();
+}
+
+void rotateView(bool r){
+	rotating = r;
+	if (moving | rotating) glutIdleFunc(idleCallBack); else glutIdleFunc(NULL);
+}
+
+//======================================================
+// KEYBOARD CALLBACK ROUTINE 
+//======================================================
+void keyboardCallBack(unsigned char key, int x, int y) {
+	printf("Keyboard call back: key=%c, x=%d, y=%d\n", key, x, y);
+	switch(key)
+	{
+	case 'r': 
+		rotating= !rotating;
+		rotateView(rotating);
+	break;
+	case 'R':
+        //resetView();
+	break;
+	case 'm': 
+		//moving= !moving;
+		//moveView(moving);
+	break;
+	case 'z': 
+		if (zoomFactor > 1) zoomFactor = zoomFactor - 1;
+	break;
+	case 'Z':
+        zoomFactor = zoomFactor + 1;
+	break;
+	default:
+		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
+	}
+
+	glutPostRedisplay();
 }
 
 void executeViewControl (float y, float p){
@@ -46,6 +98,7 @@ void displayCallBack() {
 	executeViewControl (yaw, pitch);
 	
 	drawSomething();
+
 	glutSwapBuffers();
 }
 
@@ -60,7 +113,7 @@ void reshapeCallBack(int w, int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-int _tmain(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
    // Allow cmd line arguments to be passed to the glut
 	glutInit(&argc, argv);
@@ -76,11 +129,11 @@ int _tmain(int argc, char* argv[])
 	//glutIdleFunc(NULL); // Starts the Idle Function as having no routine attached to it. This is modified in rotateView()
 	//glutMouseFunc(mouseClickCallBack);
 	//glutMotionFunc(mouseMotionCallBack);
-	//glutKeyboardFunc(keyboardCallBack);
+	glutKeyboardFunc(keyboardCallBack);
 
 
-	glClearColor(1.0, 1.0, 1.0, 1.0);
-	glColor3f(1.0, 0.0, 0.0);
+	glClearColor(1, 1.0, 1.0, 1.0);
+	//glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
 
