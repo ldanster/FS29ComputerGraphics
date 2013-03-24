@@ -8,7 +8,7 @@ Stage 1 :
 
 ![Stage 1 Image](http://i.imgur.com/CfZmC7V.png)
 
-| Member|
+| Members |
 | ------ |
 |  Charl Cilliers |  
 |  Lebohang Danster |
