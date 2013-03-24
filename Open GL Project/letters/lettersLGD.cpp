@@ -42,7 +42,7 @@ void drawGShape(){
 	glPopMatrix();
 }
 
-void drawHShape(){
+void drawDShape(){
 	glPushMatrix();
 		glRotatef(-90,0,0,1);
 		draw3Dcurve(

@@ -11,4 +11,4 @@ extern void drawLShape();
 
 extern void drawGShape();
 
-extern void drawHShape();
+extern void drawDShape();

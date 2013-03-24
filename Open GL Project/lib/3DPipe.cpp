@@ -13,7 +13,7 @@
 void draw3DPipe(float height, float width,float breadth){
 
 	float posWidth = width /2;
-	float negWidth = (width /2) * -1;
+	float negWidth = (posWidth) * -1;
 
 	float posHeight = height /2;
 	float negHeight = (posHeight) *-1;

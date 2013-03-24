@@ -7,8 +7,7 @@
 #include "lettersLGD.h"
 #include "3DPipe.h"
 
-//======================================================
-// GLOBAL VARIABLES & FUNCTIONS
+
 //======================================================
 float pitch = 0.0f;
 float yaw = 0.0f;
@@ -30,17 +29,57 @@ void drawFloor(){
 }
 
 void drawSomething(){
-	glTranslatef(-3,0,0);
-	drawLShape();
-	glTranslatef(3,0,0);
-	drawHShape();
-	glTranslatef(3,0,0);
-	drawGShape();
-	drawFloor();
+	//glTranslatef(-3,0,0);
+	//drawLShape();
+	//glTranslatef(3,0,0);
+	//drawHShape();
+	//glTranslatef(3,0,0);
+	//drawGShape();
+	//drawFloor();
+
+
+
+	for(int i = 90; i > -100 ; i -= 10){
+		glPushMatrix();
+			glRotatef(90,0,0,1);
+			glRotatef(i,0,1,0);
+			glTranslatef(2,0,0);
+			glScalef(1,3,0.1);
+			drawDShape();
+		glPopMatrix();
+	}
+
+	glPushMatrix();
+		glTranslatef(-3,-1,1);
+		glScalef(1,1,0.3);
+		drawLShape();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-3,-1,-1);
+		glScalef(1,1,0.3);
+		drawLShape();
+	glPopMatrix();
+
+	//front arms
+
+	glPushMatrix();
+		glTranslatef(3,-0.5,-1);
+		glScalef(0.1,0.8,0.3);
+		drawLShape();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(3,-0.5,1);
+		glScalef(0.1,0.8,0.3);
+		drawLShape();
+	glPopMatrix();
+
+
 }
 
 void incrementYaw(){
-	pitch=pitch+.25;
+	//pitch=pitch+.25;
 	yaw=yaw+.25;
 }
 
@@ -54,9 +93,7 @@ void rotateView(bool r){
 	if (moving | rotating) glutIdleFunc(idleCallBack); else glutIdleFunc(NULL);
 }
 
-//======================================================
-// KEYBOARD CALLBACK ROUTINE 
-//======================================================
+
 void keyboardCallBack(unsigned char key, int x, int y) {
 	printf("Keyboard call back: key=%c, x=%d, y=%d\n", key, x, y);
 	switch(key)
@@ -112,7 +149,6 @@ void reshapeCallBack(int w, int h)
 
 int main(int argc, char* argv[])
 {
-   // Allow cmd line arguments to be passed to the glut
 	glutInit(&argc, argv);
 
 	// Create and name window
