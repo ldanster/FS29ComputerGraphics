@@ -5,16 +5,13 @@
 #include <GL/glut.h>
 #include "3DCurve.h"
 #include "lettersLGD.h"
+#include "3DPipe.h"
 
 //======================================================
 // GLOBAL VARIABLES & FUNCTIONS
 //======================================================
 float pitch = 0.0f;
 float yaw = 0.0f;
-float neckAngle = 70.0;
-float headAngle = -80.0;
-bool increaseNeckAngle = true;
-bool increaseHeadAngle = true;
 float zoomFactor = 10.0;
 float pitch0, yaw0;
 bool MousePressed;
@@ -22,11 +19,24 @@ int mouseX0, mouseY0;
 bool rotating=false;
 bool moving=false;
 
-void drawSomething(){
-	glScalef(2,2,1);
+void drawFloor(){
+	glBegin(GL_QUADS);
+		glColor3f(0,0,0);
+		glVertex3f(-20000,-2,20000);
+		glVertex3f(20000,-2,20000);
+		glVertex3f(20000,-2,-20000);
+		glVertex3f(-20000,-2,-20000);
+	glEnd();
+}
 
-	drawG();
-	//drawL();
+void drawSomething(){
+	glTranslatef(-3,0,0);
+	drawLShape();
+	glTranslatef(3,0,0);
+	drawHShape();
+	glTranslatef(3,0,0);
+	drawGShape();
+	drawFloor();
 }
 
 void incrementYaw(){
@@ -36,12 +46,6 @@ void incrementYaw(){
 
 void idleCallBack (){
 	if(rotating) incrementYaw();
-	
-	if(moving) {
-		//moveHead();
-		//moveNeck();
-	}
-	
     glutPostRedisplay();
 }
 
@@ -91,9 +95,7 @@ void displayCallBack() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	executeViewControl (yaw, pitch);
-	
 	drawSomething();
-
 	glutSwapBuffers();
 }
 
@@ -128,9 +130,8 @@ int main(int argc, char* argv[])
 
 
 	glClearColor(1, 1.0, 1.0, 1.0);
-	//glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
+	glEnable(GL_DEPTH_TEST);
 
 	// Print Application Usage
 	printf("Program Controls:\n");

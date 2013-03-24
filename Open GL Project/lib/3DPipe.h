@@ -1,14 +1,10 @@
 ////////////////////////////////////////////////////////////////
 //
-// lettersLGD - Code to produce the letters LGD
+// 3DPipe.h
 // 
 // Author: Charl Cilliers
 // Date:   23-03-2012
 //
 ////////////////////////////////////////////////////////////////
 
-extern void drawLShape();
-
-extern void drawGShape();
-
-extern void drawHShape();
+void draw3DPipe(float height,float width,float breadth);
