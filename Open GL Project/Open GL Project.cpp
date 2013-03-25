@@ -8,6 +8,7 @@
 #include "3DPipe.h"
 
 
+
 //======================================================
 float pitch = 0.0f;
 float yaw = 0.0f;
@@ -17,6 +18,42 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 bool moving=false;
+
+int frameCount;
+int currentTime;
+int previousTime;
+float fps;
+
+void calculateFPS()
+{
+    //  Increase frame count
+    frameCount++;
+ 
+    //  Get the number of milliseconds since glutInit called
+    //  (or first call to glutGet(GLUT ELAPSED TIME)).
+    currentTime = glutGet(GLUT_ELAPSED_TIME);
+ 
+    //  Calculate time passed
+    int timeInterval = currentTime - previousTime;
+ 
+    if(timeInterval > 1000)
+    {
+        //  calculate the number of frames per second
+        fps = frameCount / (timeInterval / 1000.0f);
+
+
+		printf("FPS %f \n", fps);
+
+
+
+ 
+        //  Set time
+        previousTime = currentTime;
+ 
+        //  Reset frame count
+        frameCount = 0;
+    }
+}
 
 void drawFloor(){
 	glBegin(GL_QUADS);
@@ -39,7 +76,7 @@ void drawSomething(){
 
 
 
-	for(int i = 90; i > -100 ; i -= 10){
+	for(int i = 120; i >= -120 ; i -= 10){
 		glPushMatrix();
 			glRotatef(90,0,0,1);
 			glRotatef(i,0,1,0);
@@ -75,6 +112,7 @@ void drawSomething(){
 		drawLShape();
 	glPopMatrix();
 
+	calculateFPS();
 
 }
 
