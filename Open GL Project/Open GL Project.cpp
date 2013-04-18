@@ -5,6 +5,8 @@
 #include <GL/glut.h>
 #include "3DCurve.h"
 #include "lettersLGD.h"
+#include "lettersHBI.h"
+#include "lettersKCA.h"
 #include "3DPipe.h"
 
 
@@ -73,8 +75,6 @@ void drawSomething(){
 	//glTranslatef(3,0,0);
 	//drawGShape();
 	//drawFloor();
-
-
 
 	for(int i = 120; i >= -120 ; i -= 10){
 		glPushMatrix();

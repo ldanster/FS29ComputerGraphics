@@ -79,7 +79,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="letters\letterKCA.h" />
+    <ClInclude Include="LettersHBI.h" />
+    <ClInclude Include="letters\lettersKCA.h" />
     <ClInclude Include="letters\lettersLGD.h" />
     <ClInclude Include="lib\3DCurve.h" />
     <ClInclude Include="lib\3DPipe.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LettersHBI.cpp" />
     <ClCompile Include="letters\letterKCA.cpp" />
     <ClCompile Include="letters\lettersLGD.cpp" />
     <ClCompile Include="lib\3DCurve.cpp" />
