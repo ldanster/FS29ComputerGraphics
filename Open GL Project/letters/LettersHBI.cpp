@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 //
-// lettersKCA - Code to produce the letters LGD
+// lettersHBI - Code to produce the letters HBI
 // 
 // Author: Lebohang Danster
 // Date:   18-04-2013

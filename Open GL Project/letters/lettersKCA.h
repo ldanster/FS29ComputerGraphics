@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 //
-// lettersLGD - Code to produce the letters LGD
+// lettersKCA - Code to produce the letters KCA
 // 
 // Author: Lebohang Danster
 // Date:   27-03-2013
