@@ -9,9 +9,10 @@
 #include "lettersKCA.h"
 #include "3DPipe.h"
 
+#pragma region Local Variables
 
 
-//======================================================
+
 float pitch = 0.0f;
 float yaw = 0.0f;
 float zoomFactor = 10.0;
@@ -25,6 +26,64 @@ int frameCount;
 int currentTime;
 int previousTime;
 float fps;
+
+#pragma endregion
+
+#pragma region Function Declarations
+
+void displayCallBack(void);
+void calculateFPS(void);
+void drawFloor(void);
+void drawSomething(void);
+void idleCallBack(void);
+void incrementYaw(void);
+void displayCallBack(void);
+void rotateView(bool r);
+void reshapeCallBack(int w, int h);
+void executeViewControl(float y, float p);
+void keyboardCallBack(unsigned char key, int x, int y);
+void reshapeCallBack(int w, int h);
+
+#pragma endregion
+
+
+int main(int argc, char* argv[])
+{
+	glutInit(&argc, argv);
+
+	// Create and name window
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Need both double buffering and z buffer
+    glutInitWindowSize(700, 700);
+    glutCreateWindow("Computer Graphics");
+
+	// Add Display & Mouse CallBacks
+	glutReshapeFunc(reshapeCallBack);
+	glutDisplayFunc(displayCallBack);
+	//glutIdleFunc(NULL); // Starts the Idle Function as having no routine attached to it. This is modified in rotateView()
+	//glutMouseFunc(mouseClickCallBack);
+	//glutMotionFunc(mouseMotionCallBack);
+	glutKeyboardFunc(keyboardCallBack);
+
+
+	glClearColor(1, 1.0, 1.0, 1.0);
+	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	glEnable(GL_DEPTH_TEST);
+
+	// Print Application Usage
+	printf("Program Controls:\n");
+	printf("Left Mouse Button & Drag - Changes the View.\n");
+	printf("Key \"b\" - Back Fill.\n");
+	printf("Key \"f\" - Front Fill.\n");
+	printf("Key \"l\" - Wire Frame/Line Fill.\n");
+	printf("Key \"i\" - Increment Sections of Curve.\n");
+	printf("Key \"d\" - Decrement Sections of Curve.\n");
+	printf("Key \"r\" - Automated Rotation.\n");
+	printf("Key \"R\" - Reset the View.\n");
+
+	glutMainLoop();
+
+	return 0;
+}
 
 void calculateFPS()
 {
@@ -57,7 +116,7 @@ void calculateFPS()
     }
 }
 
-void drawFloor(){
+void drawFloor() {
 	glBegin(GL_QUADS);
 		glColor3f(0,0,0);
 		glVertex3f(-20000,-2,20000);
@@ -121,12 +180,12 @@ void incrementYaw(){
 	yaw=yaw+.25;
 }
 
-void idleCallBack (){
+void idleCallBack () {
 	if(rotating) incrementYaw();
     glutPostRedisplay();
 }
 
-void rotateView(bool r){
+void rotateView(bool r) {
 	rotating = r;
 	if (moving | rotating) glutIdleFunc(idleCallBack); else glutIdleFunc(NULL);
 }
@@ -160,7 +219,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	glutPostRedisplay();
 }
 
-void executeViewControl (float y, float p){
+void executeViewControl (float y, float p) {
 	glRotatef(y, 0.0f, 1.0f, 0.0f); //yaw about y-axis
     glRotatef(p, 1.0f, 0.0f, 0.0f); //pitch about x-axis 
 }
@@ -185,41 +244,5 @@ void reshapeCallBack(int w, int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-int main(int argc, char* argv[])
-{
-	glutInit(&argc, argv);
 
-	// Create and name window
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Need both double buffering and z buffer
-    glutInitWindowSize(700, 700);
-    glutCreateWindow("Computer Graphics");
-
-	// Add Display & Mouse CallBacks
-	glutReshapeFunc(reshapeCallBack);
-	glutDisplayFunc(displayCallBack);
-	//glutIdleFunc(NULL); // Starts the Idle Function as having no routine attached to it. This is modified in rotateView()
-	//glutMouseFunc(mouseClickCallBack);
-	//glutMotionFunc(mouseMotionCallBack);
-	glutKeyboardFunc(keyboardCallBack);
-
-
-	glClearColor(1, 1.0, 1.0, 1.0);
-	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	glEnable(GL_DEPTH_TEST);
-
-	// Print Application Usage
-	printf("Program Controls:\n");
-	printf("Left Mouse Button & Drag - Changes the View.\n");
-	printf("Key \"b\" - Back Fill.\n");
-	printf("Key \"f\" - Front Fill.\n");
-	printf("Key \"l\" - Wire Frame/Line Fill.\n");
-	printf("Key \"i\" - Increment Sections of Curve.\n");
-	printf("Key \"d\" - Decrement Sections of Curve.\n");
-	printf("Key \"r\" - Automated Rotation.\n");
-	printf("Key \"R\" - Reset the View.\n");
-
-	glutMainLoop();
-
-	return 0;
-}
 

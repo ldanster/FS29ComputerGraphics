@@ -12,7 +12,7 @@
 #include "3DPipe.h"
 
 void drawKShape() {
-	
+
 	glPushMatrix();
 		glTranslatef(-1.5, 0, 0);
 		draw3DPipe(4, 1, 2);

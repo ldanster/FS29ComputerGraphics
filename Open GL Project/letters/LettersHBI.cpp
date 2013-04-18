@@ -3,7 +3,7 @@
 // lettersKCA - Code to produce the letters LGD
 // 
 // Author: Lebohang Danster
-// Date:   27-03-2013
+// Date:   18-04-2013
 //
 ////////////////////////////////////////////////////////////////
 
