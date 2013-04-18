@@ -30,10 +30,10 @@
     <ClInclude Include="lib\3DPipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LettersHBI.h">
+    <ClInclude Include="letters\lettersKCA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="letters\lettersKCA.h">
+    <ClInclude Include="letters\LettersHBI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClCompile Include="lib\3DPipe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LettersHBI.cpp">
+    <ClCompile Include="letters\LettersHBI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
