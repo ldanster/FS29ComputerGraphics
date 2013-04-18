@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////
+//
+// lettersHBI - Code to produce the letters LGD
+// 
+// Author: Lebohang Danster
+// Date:   23-03-2013
+//
+////////////////////////////////////////////////////////////////
+
+extern void drawHShape();
+
+extern void drawBShape();
+
+extern void drawIShape();
